@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { CircleUser, Menu, Package2 } from "lucide-react";
+import { CircleUser, Menu, Newspaper } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 import { navItems } from "../App";
 
@@ -20,7 +20,9 @@ const Layout = () => {
       <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
           <MobileSidebar />
-          <div className="w-full flex-1">{/* Add nav bar content here! */}</div>
+          <div className="w-full flex-1">
+            <SearchBar />
+          </div>
           <UserDropdown />
         </header>
         <main className="flex-grow p-4 overflow-auto">
@@ -36,8 +38,8 @@ const Sidebar = () => (
     <div className="flex h-full max-h-screen flex-col gap-2">
       <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
         <NavLink to="/" className="flex items-center gap-2 font-semibold">
-          <Package2 className="h-6 w-6" />
-          <span>Acme Inc</span>
+          <Newspaper className="h-6 w-6" />
+          <span>FT Clone</span>
         </NavLink>
       </div>
       <div className="flex-1">
@@ -68,8 +70,8 @@ const MobileSidebar = () => (
           to="/"
           className="flex items-center gap-2 text-lg font-semibold mb-4"
         >
-          <Package2 className="h-6 w-6" />
-          <span className="sr-only">Acme Inc</span>
+          <Newspaper className="h-6 w-6" />
+          <span className="sr-only">FT Clone</span>
         </NavLink>
         {navItems.map((item) => (
           <SidebarNavLink key={item.to} to={item.to}>
@@ -112,6 +114,16 @@ const SidebarNavLink = ({ to, children }) => (
   >
     {children}
   </NavLink>
+);
+
+const SearchBar = () => (
+  <div className="relative w-full max-w-xs">
+    <input
+      type="text"
+      placeholder="Search..."
+      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+    />
+  </div>
 );
 
 export default Layout;
